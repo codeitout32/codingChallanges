@@ -1,1 +1,76 @@
+function apartmentHunting(blocks, reqs) {
+
+  //Function to return an object having the requirement steps for the given block
+  const findLeastStepsForBlock = (blocksArr, index, requirements) => {
+
+    // Steps Tracker object
+    const target = requirements.reduce(
+      (obj, str) => ({
+        ...obj,
+        [str]: 100,
+      }),
+      {}
+    );
+
+    // Looks for Next blocks
+    for (let i = index; i < blocksArr.length; i++) {
+      requirements.forEach((string) => {
+        if (blocksArr[i][string]) {
+          /* console.log('mystep', i, string) */
+          if (i - index < target[string]) target[string] = i - index;
+        }
+      });
+    }
+
+    // Looks for previous blocks
+    for (let i = index; i >= 0; i--) {
+      requirements.forEach((string) => {
+        if (blocksArr[i][string]) {
+          if (index - i < target[string]) target[string] = index - i;
+        }
+      });
+    }
+
+  
+    return target;
+  };
+
+  // Function to find larget value from the given object, Where pair is of form {string: number}
+  const findLargest = (object) => {
+    const array = Object.values(object);
+    let largest = 0;
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] > largest) {
+        largest = array[i];
+      }
+    }
+    return largest;
+  };
+
+  // result index and object tracker for the above code.
+  const resultTracker = {
+    index: 0,
+    object: {
+      x: 100,
+    },
+  };
+
+
+  //Finds the Blocks steps and compare it with previous chosen block
+  for (let i = 0; i < blocks.length; i++) {
+    const tempObject = findLeastStepsForBlock(blocks, i, reqs);
+    if (findLargest(resultTracker.object) > findLargest(tempObject)) {
+      resultTracker.index = i;
+      resultTracker.object = tempObject;
+    }
+  }
+
+  const result = resultTracker.index;
+  console.log("result", result);
+
+  return result;
+}
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
 

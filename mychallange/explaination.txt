@@ -1,0 +1,1 @@
+in this function i have used loops to check forward and backward the array for the least steps user can have to reach the requred destination.

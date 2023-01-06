@@ -1,1 +1,23 @@
-in this function i have used loops to check forward and backward the array for the least steps user can have to reach the requred destination.
+in this Solution i have used 
+-loops to check forward and backward of the array, for the least steps user can have to reach the requred destination.
+
+Function used:
+# findLargest() 
+# findLeastStepsForBlock()
+# Loop which compares the required steps of the blocks, find the least largest step among the blocks 
+
+* findLargest()
+{
+	takes an object with
+	key : value pair of type "string: number"
+	return largest number
+}
+
+
+* findLeastStepsForBlock() - Function to return an object having the requirement steps for the given block
+{
+	args: (array_of_blocks, index of block to test, requirement_object)  
+	Looks for Next blocks for the least steps
+	Looks for Previous blocks for the least steps
+	return the object with steps for that block
+}
